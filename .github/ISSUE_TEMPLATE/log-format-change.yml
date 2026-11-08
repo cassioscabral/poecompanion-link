@@ -1,0 +1,24 @@
+name: Log format change
+description: The game's Client.txt lines changed and the app misses or misreads events
+labels: [log-format]
+body:
+  - type: input
+    id: patch
+    attributes:
+      label: Game version or patch
+    validations:
+      required: true
+  - type: textarea
+    id: lines
+    attributes:
+      label: Redacted example lines
+      description: >
+        Paste only the few relevant lines, with character, account, guild, and player names
+        replaced (the app's Export button does this). Never paste or attach the raw Client.txt.
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What should the app have detected?
