@@ -4,7 +4,7 @@ import { parseLine } from "../src";
 
 const load = (f: string) =>
   readFileSync(new URL(`./fixtures/${f}`, import.meta.url), "utf8")
-    .split("\n")
+    .split(/\r?\n/)
     .filter((l) => l && !l.startsWith("#"));
 const real = load("real-ee2.log");
 const syn = load("synthetic-whispers.log");

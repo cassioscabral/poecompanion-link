@@ -1,6 +1,7 @@
 # Adapted from Exiled Exchange 2 (MIT) — see NOTICE
 appId: com.poecompanion.link
 productName: PoE Companion Link
+executableName: poecompanion-link
 npmRebuild: false
 directories:
   output: release

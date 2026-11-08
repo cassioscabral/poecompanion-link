@@ -32,7 +32,7 @@ export function createRawTail(path: string, onLine: (line: string) => void, inte
           return;
         }
         pending = all.subarray(last + 1);
-        for (const l of all.subarray(0, last).toString("utf8").split("\n")) {
+        for (const l of all.subarray(0, last).toString("utf8").split(/\r?\n/)) {
           const clean = l.replace(/\r$/, "");
           if (clean) onLine(clean);
         }
