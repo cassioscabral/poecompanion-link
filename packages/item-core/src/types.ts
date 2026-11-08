@@ -10,14 +10,7 @@ export type Rarity =
   | "Other";
 
 export type ModifierKind =
-  | "implicit"
-  | "explicit"
-  | "enchant"
-  | "rune"
-  | "crafted"
-  | "fractured"
-  | "desecrated"
-  | "unknown";
+  "implicit" | "explicit" | "enchant" | "rune" | "crafted" | "fractured" | "desecrated" | "unknown";
 
 export interface ParsedModifier {
   /** Display text: bracket links resolved, roll ranges and trailing markers removed. */

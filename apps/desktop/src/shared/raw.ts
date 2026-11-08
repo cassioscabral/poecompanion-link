@@ -23,6 +23,10 @@ export function keepChatOrUnknown(line: string, parse: (l: string) => unknown): 
   }
 }
 
-export function selectForExport(lines: readonly string[], onlyChat: boolean, parse: (l: string) => unknown): string[] {
+export function selectForExport(
+  lines: readonly string[],
+  onlyChat: boolean,
+  parse: (l: string) => unknown,
+): string[] {
   return onlyChat ? lines.filter((l) => keepChatOrUnknown(l, parse)) : [...lines];
 }

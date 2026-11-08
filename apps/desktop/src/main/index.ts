@@ -1,5 +1,15 @@
 // Tray/window/updater patterns adapted from Exiled Exchange 2 (MIT) — see NOTICE
-import { app, BrowserWindow, dialog, ipcMain, Menu, Notification, Tray, nativeImage, shell } from "electron";
+import {
+  app,
+  BrowserWindow,
+  dialog,
+  ipcMain,
+  Menu,
+  Notification,
+  Tray,
+  nativeImage,
+  shell,
+} from "electron";
 import { autoUpdater } from "electron-updater";
 import fs from "node:fs";
 import path from "node:path";
@@ -18,7 +28,6 @@ if (!app.requestSingleInstanceLock()) {
 
 async function start() {
   let win: BrowserWindow | null = null;
-  let tray: Tray | null = null;
   let quitting = false;
   let events: LogEvent[] = [];
   let rawLines: string[] = [];
@@ -40,7 +49,10 @@ async function start() {
       send(CH.event, e);
       if (e.type === "whisper_in" && e.trade && Notification.isSupported()) {
         const price = e.trade.price ? ` for ${e.trade.price.amount} ${e.trade.price.currency}` : "";
-        new Notification({ title: `Trade request from ${e.from}`, body: `${e.trade.item}${price}` }).show();
+        new Notification({
+          title: `Trade request from ${e.from}`,
+          body: `${e.trade.item}${price}`,
+        }).show();
       }
     },
   });
@@ -76,7 +88,12 @@ async function start() {
     return state();
   });
   ipcMain.handle(CH.exportSample, async (_e, onlyChat: unknown): Promise<ExportResult> => {
-    if (rawLines.length === 0) return { ok: false, reason: "No lines captured yet. Turn on log reading and play a bit (lines are collected from when watching starts)." };
+    if (rawLines.length === 0)
+      return {
+        ok: false,
+        reason:
+          "No lines captured yet. Turn on log reading and play a bit (lines are collected from when watching starts).",
+      };
     const r = await dialog.showSaveDialog(win!, {
       title: "Save redacted sample",
       defaultPath: "poe-companion-sample.txt",
@@ -85,7 +102,9 @@ async function start() {
     if (r.canceled || !r.filePath) return { ok: false, reason: "Cancelled" };
     try {
       const redactor = createRedactor();
-      const out = selectForExport(rawLines, onlyChat === true, parseLine).map((l) => redactor.redactLine(l));
+      const out = selectForExport(rawLines, onlyChat === true, parseLine).map((l) =>
+        redactor.redactLine(l),
+      );
       fs.writeFileSync(r.filePath, out.join("\n") + "\n");
       return { ok: true, file: r.filePath, lines: out.length };
     } catch (err) {
@@ -142,8 +161,10 @@ async function start() {
 
   // Tray (a 1x1 transparent fallback keeps the tray alive if the icon asset is absent)
   const iconFile = path.join(__dirname, "tray.png");
-  const icon = fs.existsSync(iconFile) ? nativeImage.createFromPath(iconFile) : nativeImage.createEmpty();
-  tray = new Tray(icon);
+  const icon = fs.existsSync(iconFile)
+    ? nativeImage.createFromPath(iconFile)
+    : nativeImage.createEmpty();
+  const tray = new Tray(icon);
   tray.setToolTip("PoE Companion Link");
   tray.setContextMenu(
     Menu.buildFromTemplate([

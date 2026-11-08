@@ -24,7 +24,8 @@ export interface AppState {
   version: string;
 }
 
-export type ExportResult = { ok: true; file: string; lines: number } | { ok: false; reason: string };
+export type ExportResult =
+  { ok: true; file: string; lines: number } | { ok: false; reason: string };
 
 /** The only surface the renderer can reach. */
 export interface CompanionApi {

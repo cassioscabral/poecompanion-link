@@ -31,7 +31,7 @@ export function createRedactor(): Redactor {
       if (!m) return line.replace(USER_PATH, "$1User");
       const text = m[4];
       const prefix = line.slice(0, line.length - text.length);
-      let out = text;
+      let out: string;
       let r: RegExpMatchArray | null;
       if ((r = text.match(WHISPER_HEAD))) {
         const g = r[2] ? `<${guild(r[2].slice(1, -1))}> ` : "";

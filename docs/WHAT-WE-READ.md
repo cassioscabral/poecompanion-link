@@ -5,11 +5,11 @@ with this page, that's a bug. Please open an issue.
 
 ## Reads (all opt-in, all local)
 
-| Source | When | Why |
-|---|---|---|
-| `Client.txt` (the game's own log file) | Only after you enable it in Settings | Zone changes, level ups, deaths, AFK, whispers, trade requests |
-| Clipboard | Only right after **you** press the item-copy hotkey | Read the item you are hovering |
-| Public GGG / community APIs (trade data, currency exchange) | When you ask for a lookup | Prices and listings. Requests go out from **your** PC |
+| Source                                                      | When                                                | Why                                                            |
+| ----------------------------------------------------------- | --------------------------------------------------- | -------------------------------------------------------------- |
+| `Client.txt` (the game's own log file)                      | Only after you enable it in Settings                | Zone changes, level ups, deaths, AFK, whispers, trade requests |
+| Clipboard                                                   | Only right after **you** press the item-copy hotkey | Read the item you are hovering                                 |
+| Public GGG / community APIs (trade data, currency exchange) | When you ask for a lookup                           | Prices and listings. Requests go out from **your** PC          |
 
 ## Never
 

@@ -20,7 +20,11 @@ export function createLogWatcher(opts: LogWatcherOptions): LogWatcher {
   const emitError = (err: unknown) => {
     const e = err instanceof Error ? err : new Error(String(err));
     for (const cb of [...errorCbs]) {
-      try { cb(e); } catch { /* listener bugs must not kill the loop */ }
+      try {
+        cb(e);
+      } catch {
+        /* listener bugs must not kill the loop */
+      }
     }
   };
 
@@ -30,10 +34,18 @@ export function createLogWatcher(opts: LogWatcherOptions): LogWatcher {
       const clean = line.replace(/\r$/, "");
       if (!clean) continue;
       let ev: LogEvent | null = null;
-      try { ev = parseLine(clean); } catch (err) { emitError(err); }
+      try {
+        ev = parseLine(clean);
+      } catch (err) {
+        emitError(err);
+      }
       if (!ev) continue;
       for (const cb of [...eventCbs]) {
-        try { cb(ev); } catch (err) { emitError(err); }
+        try {
+          cb(ev);
+        } catch (err) {
+          emitError(err);
+        }
       }
     }
   };

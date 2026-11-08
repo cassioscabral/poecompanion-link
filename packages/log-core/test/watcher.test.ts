@@ -13,7 +13,10 @@ async function until(f: () => boolean, ms = 3000) {
 }
 
 let dir: string, file: string;
-beforeEach(() => { dir = mkdtempSync(join(tmpdir(), "logcore-")); file = join(dir, "Client.txt"); });
+beforeEach(() => {
+  dir = mkdtempSync(join(tmpdir(), "logcore-"));
+  file = join(dir, "Client.txt");
+});
 afterEach(() => rmSync(dir, { recursive: true, force: true }));
 
 function setup(fromEnd?: boolean) {
@@ -80,7 +83,9 @@ describe("watcher", () => {
   it("throwing listeners go to onError, unsubscribe works", async () => {
     writeFileSync(file, "");
     const { w, errors } = setup();
-    const off = w.onEvent(() => { throw new Error("boom"); });
+    const off = w.onEvent(() => {
+      throw new Error("boom");
+    });
     await w.start();
     appendFileSync(file, death("X"));
     await until(() => errors.length >= 1);
