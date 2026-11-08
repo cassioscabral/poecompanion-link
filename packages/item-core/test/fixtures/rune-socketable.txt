@@ -1,0 +1,10 @@
+Item Class: Socketable
+Rarity: Currency
+Greater Iron Rune
+--------
+Stack Size: 1/10
+--------
+Martial Weapons: 18% increased Physical Damage
+Armour: 18% increased Armour
+--------
+Place into an empty Rune Socket in a Martial Weapon or Armour to apply its effect to that item.

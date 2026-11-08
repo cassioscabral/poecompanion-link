@@ -1,0 +1,10 @@
+Item Class: Socketable
+Rarity: Currency
+Soul Core of Tacati
+--------
+Stack Size: 1/10
+--------
+Martial Weapons: 12% chance to inflict Bleeding on Hit
+Armour: +12% to Chaos Resistance
+--------
+Place into an empty Rune Socket in a Martial Weapon or Armour to apply its effect to that item.

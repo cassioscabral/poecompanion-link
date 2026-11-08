@@ -1,0 +1,16 @@
+Item Class: Rings
+Rarity: Rare
+Doom Loop
+Prismatic Ring
+--------
+Requires: Level 45
+--------
+Item Level: 79
+--------
++8% to all Elemental Resistances (implicit)
+--------
++143 to Evasion Rating
++12 to Strength
++15% to [Resistances|Cold Resistance]
++20% to [Resistances|Fire Resistance] (crafted)
++3 to Level of all Spell Skills (desecrated)
