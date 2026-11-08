@@ -1,0 +1,9 @@
+node_modules/
+dist/
+out/
+release/
+*.log
+.DS_Store
+# never commit real player logs
+**/Client.txt
+samples/private/

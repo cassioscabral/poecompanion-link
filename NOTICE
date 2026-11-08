@@ -1,0 +1,11 @@
+PoE Companion Link
+Copyright (c) 2026 Cassio Cabral — MIT License (see LICENSE)
+
+This project adapts patterns and test fixtures from the following MIT-licensed projects:
+
+- Exiled Exchange 2 — https://github.com/Kvan7/Exiled-Exchange-2
+  (fork of Awakened PoE Trade) Copyright (c) 2020 Alexander Drozdov, MIT License
+- Awakened PoE Trade — https://github.com/SnosMe/awakened-poe-trade
+  Copyright (c) 2020 Alexander Drozdov, MIT License
+
+Files containing adapted material say so in a header comment.
