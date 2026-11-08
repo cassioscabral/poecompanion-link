@@ -1,6 +1,6 @@
 import type { LogEvent } from "@poecompanion/log-core";
 import { describe, expect, it } from "vitest";
-import { addEvent, addRaw, describeEvent } from "./events";
+import { addEvent, describeEvent } from "./events";
 
 const ev = (n: number): LogEvent => ({ type: "death", character: `c${n}`, ts: "2026/01/01 00:00:00", raw: `r${n}` });
 
@@ -18,11 +18,6 @@ describe("event list reducer", () => {
     const l = [ev(1)];
     addEvent(l, ev(2));
     expect(l).toHaveLength(1);
-  });
-  it("caps raw lines", () => {
-    let r: string[] = [];
-    for (let i = 0; i < 10; i++) r = addRaw(r, String(i), 3);
-    expect(r).toEqual(["7", "8", "9"]);
   });
   it("describes a trade whisper", () => {
     const e: LogEvent = {

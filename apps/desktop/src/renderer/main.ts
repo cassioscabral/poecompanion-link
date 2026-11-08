@@ -65,7 +65,7 @@ $<HTMLInputElement>("readLog").addEventListener("change", (e) =>
 $("browse").addEventListener("click", () => run(api.browseLogPath()));
 $("auto").addEventListener("click", () => run(api.setLogPath(null)));
 $("export").addEventListener("click", async () => {
-  const r = await api.exportSample();
+  const r = await api.exportSample($<HTMLInputElement>("onlyChat").checked);
   $("exportMsg").textContent = r.ok ? `Saved ${r.lines} redacted lines to ${r.file}` : r.reason;
 });
 

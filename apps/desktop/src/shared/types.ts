@@ -32,7 +32,7 @@ export interface CompanionApi {
   setReadLog(on: boolean): Promise<AppState>;
   setLogPath(path: string | null): Promise<AppState>;
   browseLogPath(): Promise<AppState>;
-  exportSample(): Promise<ExportResult>;
+  exportSample(onlyChat: boolean): Promise<ExportResult>;
   onEvent(cb: (e: LogEvent) => void): () => void;
   onStatus(cb: (s: LogStatus) => void): () => void;
 }

@@ -1,16 +1,19 @@
 import fs from "node:fs";
 import os from "node:os";
 import { createLogWatcher, defaultLogPaths, type LogEvent, type LogWatcher } from "@poecompanion/log-core";
+import { createRawTail } from "./raw-tail";
 import type { LogStatus, Settings } from "../shared/types";
 
 export interface LogServiceHooks {
   onEvent(e: LogEvent): void;
   onStatus(s: LogStatus): void;
+  onRawLine(line: string): void;
 }
 
 /** Wraps log-core so a failure becomes an error state in the UI, never a crash. */
 export class LogService {
   private watcher: LogWatcher | null = null;
+  private tail: { stop(): Promise<void> } | null = null;
   private offs: Array<() => void> = [];
   private _status: LogStatus = { path: null, found: false, watching: false, error: null };
 
@@ -47,6 +50,9 @@ export class LogService {
       this.offs.push(w.onEvent((e) => this.hooks.onEvent(e)));
       this.offs.push(w.onError((err) => this.set({ error: msg(err) })));
       await w.start();
+      const t = createRawTail(path, (l) => this.hooks.onRawLine(l));
+      await t.start();
+      this.tail = t;
       this.watcher = w;
       this.set({ watching: true, error: null });
     } catch (err) {
@@ -59,7 +65,10 @@ export class LogService {
     this.offs = [];
     const w = this.watcher;
     this.watcher = null;
+    const t = this.tail;
+    this.tail = null;
     try {
+      await t?.stop();
       await w?.stop();
     } catch {
       // ignore: shutting down

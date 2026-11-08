@@ -6,7 +6,7 @@ const api: CompanionApi = {
   setReadLog: (on) => ipcRenderer.invoke(CH.setReadLog, on),
   setLogPath: (p) => ipcRenderer.invoke(CH.setLogPath, p),
   browseLogPath: () => ipcRenderer.invoke(CH.browseLogPath),
-  exportSample: () => ipcRenderer.invoke(CH.exportSample),
+  exportSample: (onlyChat) => ipcRenderer.invoke(CH.exportSample, onlyChat),
   onEvent(cb) {
     const h = (_: unknown, e: Parameters<typeof cb>[0]) => cb(e);
     ipcRenderer.on(CH.event, h);

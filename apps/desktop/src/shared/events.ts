@@ -40,8 +40,3 @@ function tradeText(item: string, price?: { amount: number; currency: string }): 
   return price ? `wants ${item} for ${price.amount} ${price.currency}` : `wants ${item}`;
 }
 
-/** Raw lines are kept in a small ring for the redacted export. */
-export function addRaw(lines: readonly string[], raw: string, max = 500): string[] {
-  const next = [...lines, raw];
-  return next.length > max ? next.slice(next.length - max) : next;
-}

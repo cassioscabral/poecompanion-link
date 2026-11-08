@@ -3,8 +3,9 @@ import { app, BrowserWindow, dialog, ipcMain, Menu, Notification, Tray, nativeIm
 import { autoUpdater } from "electron-updater";
 import fs from "node:fs";
 import path from "node:path";
-import { redactLine, type LogEvent } from "@poecompanion/log-core";
-import { addEvent, addRaw } from "../shared/events";
+import { createRedactor, parseLine, type LogEvent } from "@poecompanion/log-core";
+import { addEvent } from "../shared/events";
+import { pushRaw, selectForExport } from "../shared/raw";
 import { CH, type AppState, type ExportResult } from "../shared/types";
 import { LogService } from "./log-service";
 import { createSettingsStore } from "./settings";
@@ -31,9 +32,11 @@ async function start() {
 
   const logs = new LogService({
     onStatus: (s) => send(CH.status, s),
+    onRawLine: (l) => {
+      rawLines = pushRaw(rawLines, l);
+    },
     onEvent: (e) => {
       events = addEvent(events, e);
-      rawLines = addRaw(rawLines, e.raw);
       send(CH.event, e);
       if (e.type === "whisper_in" && e.trade && Notification.isSupported()) {
         const price = e.trade.price ? ` for ${e.trade.price.amount} ${e.trade.price.currency}` : "";
@@ -72,8 +75,8 @@ async function start() {
     }
     return state();
   });
-  ipcMain.handle(CH.exportSample, async (): Promise<ExportResult> => {
-    if (rawLines.length === 0) return { ok: false, reason: "No lines captured yet. Turn on log reading and play a bit." };
+  ipcMain.handle(CH.exportSample, async (_e, onlyChat: unknown): Promise<ExportResult> => {
+    if (rawLines.length === 0) return { ok: false, reason: "No lines captured yet. Turn on log reading and play a bit (lines are collected from when watching starts)." };
     const r = await dialog.showSaveDialog(win!, {
       title: "Save redacted sample",
       defaultPath: "poe-companion-sample.txt",
@@ -81,7 +84,8 @@ async function start() {
     });
     if (r.canceled || !r.filePath) return { ok: false, reason: "Cancelled" };
     try {
-      const out = rawLines.map((l) => redactLine(l));
+      const redactor = createRedactor();
+      const out = selectForExport(rawLines, onlyChat === true, parseLine).map((l) => redactor.redactLine(l));
       fs.writeFileSync(r.filePath, out.join("\n") + "\n");
       return { ok: true, file: r.filePath, lines: out.length };
     } catch (err) {
