@@ -3,6 +3,8 @@ dist/
 out/
 release/
 *.log
+# test fixtures are redacted/synthetic samples and must be tracked
+!packages/*/test/fixtures/**
 .DS_Store
 # never commit real player logs
 **/Client.txt

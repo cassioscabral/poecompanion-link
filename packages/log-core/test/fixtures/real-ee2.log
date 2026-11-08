@@ -1,0 +1,12 @@
+# Real PoE2 Client.txt lines copied from Exiled Exchange 2 (MIT) renderer/specs/web/client-log.test.ts — see NOTICE
+2026/04/26 09:28:48 1785271828 bdfe0c38 [INFO Client 443804] [STARTUP] Game Start
+2026/04/26 09:28:59 1785282687 7fbd122e [INFO Client 443804] [SCENE] Set Source [Clearfell Encampment]
+2026/04/26 09:28:58 1785282015 7fbd122e [INFO Client 443804] [SCENE] Set Source [(null)]
+2026/04/26 09:28:51 1785275203 7fbd122e [INFO Client 443804] [SCENE] Set Source [(unknown)]
+2025/09/11 18:24:17 167845515 2caa1afc [DEBUG Client 438888] Generating level 16 area "G2_1" with seed 3515667606
+2025/09/11 18:24:03 167830843 3ef232c2 [INFO Client 438888] : Kvan_seven_abyss (Mercenary) is now level 16
+2025/09/11 18:24:14 167841593 3ef232c2 [INFO Client 438888] : Kvan_seven_abyss has been slain.
+2025/09/11 18:21:43 167691140 1a62040f [DEBUG Client 438888] Joined guild named Some guild'e with 107 members
+2025/09/11 18:25:10 167897828 f4ab5af9 [INFO Client 443804] Successfully unallocated passive skill id: armour_break37, name: Cruel Methods
+2026/04/26 09:28:47 1785270812 a1e2d252 [INFO Client 443804] [HTTP2] User agent: PoE poe2_production/tags/4.4.0j Windows x64
+2026/04/26 09:28:47 1785271375 b394a3d8 [INFO Client 443804] [ENGINE] Cache directory: C:\\Users\\kvan\\AppData\\Roaming\\Path of Exile 2\\

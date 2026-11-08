@@ -1,0 +1,8 @@
+# SYNTHETIC lines — NOT captured from a real PoE2 client. We do not have a real PoE2 whisper line yet;
+# the format follows PoE1 conventions and must be re-verified against a real Client.txt.
+2026/05/01 20:00:00 1000000 abcd1234 [INFO Client 1234] @From BuyerOne: Hi, I would like to buy your Sapphire Ring listed for 5 Exalted Orb in Standard (stash tab "Trade"; position: left 3, top 7)
+2026/05/01 20:00:01 1000001 abcd1234 [INFO Client 1234] @From <GUILD> BuyerTwo: Hi, I would like to buy your Sapphire Ring listed for 0.5 Divine Orb in Dawn of the Hunt (stash tab "~price 1 div"; position: left 12, top 1)
+2026/05/01 20:00:02 1000002 abcd1234 [INFO Client 1234] @To SellerOne: Hi, I'd like to buy your 3 Divine Orb for my 450 Exalted Orb in Standard.
+2026/05/01 20:00:03 1000003 abcd1234 [INFO Client 1234] @From BuyerThree: hey, still selling?
+2026/05/01 20:00:04 1000004 abcd1234 [INFO Client 1234] : AFK mode is now ON. Autoreply "Busy, back soon: thanks"
+2026/05/01 20:00:05 1000005 abcd1234 [INFO Client 1234] : AFK mode is now OFF.
