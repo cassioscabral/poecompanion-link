@@ -1,7 +1,7 @@
 {
   "name": "@poecompanion/desktop",
   "productName": "PoE Companion Link",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Connects Path of Exile 2 on your PC to PoE Companion",
   "author": "Cassio Cabral",
   "license": "MIT",
