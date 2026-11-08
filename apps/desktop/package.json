@@ -1,0 +1,32 @@
+{
+  "name": "@poecompanion/desktop",
+  "productName": "PoE Companion Link",
+  "version": "0.0.1",
+  "description": "Connects Path of Exile 2 on your PC to PoE Companion",
+  "author": "Cassio Cabral",
+  "license": "MIT",
+  "private": true,
+  "type": "module",
+  "main": "dist/main.cjs",
+  "scripts": {
+    "bundle": "node build/bundle.mjs",
+    "build": "npm run bundle",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "package": "npm run bundle && electron-builder --publish never",
+    "release": "npm run bundle && electron-builder --publish always"
+  },
+  "dependencies": {
+    "electron-updater": "6.8.11"
+  },
+  "devDependencies": {
+    "@poecompanion/log-core": "*",
+    "@types/node": "^22.20.5",
+    "electron": "45.2.3",
+    "electron-builder": "26.18.0",
+    "esbuild": "0.28.2",
+    "typescript": "^5.9.3",
+    "vite": "7.3.7",
+    "vitest": "^3.2.7"
+  }
+}

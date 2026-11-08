@@ -1,0 +1,40 @@
+# Adapted from Exiled Exchange 2 (MIT) — see NOTICE
+appId: com.poecompanion.link
+productName: PoE Companion Link
+npmRebuild: false
+directories:
+  output: release
+files:
+  - package.json
+  - from: dist
+    to: .
+    filter: ["main.cjs", "preload.cjs", "tray.png"]
+  - from: dist/renderer
+    to: renderer
+extraMetadata:
+  main: main.cjs
+publish:
+  provider: github
+  owner: cassioscabral
+  repo: poecompanion-link
+nsis:
+  oneClick: false
+  allowToChangeInstallationDirectory: true
+win:
+  target:
+    - nsis
+    - portable
+linux:
+  target:
+    - AppImage
+  category: Utility
+mac:
+  target:
+    - target: dmg
+      arch:
+        - universal
+  identity: null
+  x64ArchFiles: "*"
+appImage:
+  executableArgs:
+    - "--sandbox"

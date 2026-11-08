@@ -1,0 +1,22 @@
+:root { color-scheme: dark; font-family: system-ui, sans-serif; }
+body { margin: 0; background: #14120f; color: #e8e0d0; display: flex; flex-direction: column; height: 100vh; font-size: 14px; }
+header { display: flex; align-items: baseline; gap: 10px; padding: 10px 16px; border-bottom: 1px solid #2c2820; }
+h1 { font-size: 16px; margin: 0; color: #d8b45a; }
+h2 { font-size: 13px; margin: 0 0 6px; text-transform: uppercase; letter-spacing: .06em; color: #9a917d; }
+#version, .hint { color: #8a826f; font-size: 12px; }
+section { padding: 10px 16px; }
+#feed-wrap { flex: 1; overflow: hidden; display: flex; flex-direction: column; min-height: 0; }
+#feed { list-style: none; margin: 0; padding: 0; overflow-y: auto; flex: 1; }
+#feed li { display: flex; gap: 8px; align-items: baseline; padding: 4px 0; border-bottom: 1px solid #221f18; }
+.ts { color: #8a826f; font-size: 12px; white-space: nowrap; }
+.badge { font-size: 11px; padding: 1px 6px; border-radius: 8px; background: #3a3426; white-space: nowrap; }
+.badge.whisper_in, .badge.whisper_out { background: #1f3a52; }
+.badge.death { background: #5a2323; }
+.badge.level_up { background: #2d4a24; }
+.badge.afk { background: #4a3a1a; }
+.row { display: flex; align-items: center; gap: 8px; margin: 6px 0; flex-wrap: wrap; }
+.toggle { font-weight: 600; }
+button { background: #2c2820; color: #e8e0d0; border: 1px solid #4a4332; border-radius: 4px; padding: 4px 10px; cursor: pointer; }
+button:hover { background: #3a3426; }
+.error { color: #ff9b8a; background: #3a1d19; padding: 6px 10px; border-radius: 4px; }
+footer { padding: 8px 16px; font-size: 11px; color: #7a735f; border-top: 1px solid #2c2820; text-align: center; }
