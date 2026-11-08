@@ -59,7 +59,7 @@ describe("fixtures", () => {
     const i = parse("rare-bow-advanced");
     expect(i).toMatchObject({ rarity: "Rare", name: "Oblivion Strike", baseType: "Rider Bow", itemLevel: 80 });
     expect(i.modifiers.map((m) => m.tier)).toEqual([4, 5, 8, 1, 1]);
-    expect(i.modifiers.at(-1)).toMatchObject({ text: "5% increased Light Radius", kind: "explicit", tier: 1 });
+    expect(i.modifiers.at(-1)).toMatchObject({ text: "15% increased Light Radius", kind: "explicit", tier: 1 });
   });
 
   it("rare with implicit", () => {
