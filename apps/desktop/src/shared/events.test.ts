@@ -2,7 +2,12 @@ import type { LogEvent } from "@poecompanion/log-core";
 import { describe, expect, it } from "vitest";
 import { addEvent, describeEvent } from "./events";
 
-const ev = (n: number): LogEvent => ({ type: "death", character: `c${n}`, ts: "2026/01/01 00:00:00", raw: `r${n}` });
+const ev = (n: number): LogEvent => ({
+  type: "death",
+  character: `c${n}`,
+  ts: "2026/01/01 00:00:00",
+  raw: `r${n}`,
+});
 
 describe("event list reducer", () => {
   it("puts newest first", () => {
@@ -21,7 +26,11 @@ describe("event list reducer", () => {
   });
   it("describes a trade whisper", () => {
     const e: LogEvent = {
-      type: "whisper_in", from: "Bob", message: "hi", ts: "t", raw: "r",
+      type: "whisper_in",
+      from: "Bob",
+      message: "hi",
+      ts: "t",
+      raw: "r",
       trade: { item: "Sapphire Ring", price: { amount: 5, currency: "divine" } },
     };
     expect(describeEvent(e)).toBe("Bob: wants Sapphire Ring for 5 divine");

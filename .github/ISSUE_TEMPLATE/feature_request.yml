@@ -1,0 +1,28 @@
+name: Feature request
+description: Suggest an improvement
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem do you want solved?
+    validations:
+      required: true
+  - type: textarea
+    id: idea
+    attributes:
+      label: Proposed behavior
+  - type: textarea
+    id: data
+    attributes:
+      label: What would it need to read?
+      description: >
+        Which of Client.txt, the clipboard after your Ctrl+C, or a public API? Features that
+        need game memory, screen reading, POESESSID, or automatic in-game input will be declined.
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Checks
+      options:
+        - label: It does not automate in-game input (one keypress = one action at most)
+          required: true

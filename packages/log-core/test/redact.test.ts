@@ -18,9 +18,19 @@ describe("redaction", () => {
     const r = createRedactor();
     const lv = r.redactLine(`${P}: Secret_Name (Mercenary) is now level 5`);
     expect(lv).not.toContain("Secret_Name");
-    expect(parseLine(lv)).toMatchObject({ type: "level_up", character: "Player1", className: "Mercenary", level: 5 });
-    expect(parseLine(r.redactLine(`${P}: Secret_Name has been slain.`))).toMatchObject({ type: "death", character: "Player1" });
-    expect(r.redactLine(`${P}Joined guild named Some guild'e with 107 members`)).toContain("Guild1 with 107 members");
+    expect(parseLine(lv)).toMatchObject({
+      type: "level_up",
+      character: "Player1",
+      className: "Mercenary",
+      level: 5,
+    });
+    expect(parseLine(r.redactLine(`${P}: Secret_Name has been slain.`))).toMatchObject({
+      type: "death",
+      character: "Player1",
+    });
+    expect(r.redactLine(`${P}Joined guild named Some guild'e with 107 members`)).toContain(
+      "Guild1 with 107 members",
+    );
   });
   it("trade request keeps its parsed trade", () => {
     const l = `${P}@From Zed: Hi, I would like to buy your Ring listed for 1 Chaos Orb in Standard (stash tab "T"; position: left 1, top 2)`;
@@ -28,7 +38,9 @@ describe("redaction", () => {
   });
   it("scrubs Windows user names in paths and leaves other lines alone", () => {
     const r = createRedactor();
-    expect(r.redactLine(`${P}[ENGINE] Cache directory: C:\\\\Users\\\\kvan\\\\AppData`)).not.toContain("kvan");
+    expect(
+      r.redactLine(`${P}[ENGINE] Cache directory: C:\\\\Users\\\\kvan\\\\AppData`),
+    ).not.toContain("kvan");
     expect(r.redactLine("not a log line")).toBe("not a log line");
   });
 });

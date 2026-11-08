@@ -39,4 +39,3 @@ export function describeEvent(e: LogEvent): string {
 function tradeText(item: string, price?: { amount: number; currency: string }): string {
   return price ? `wants ${item} for ${price.amount} ${price.currency}` : `wants ${item}`;
 }
-

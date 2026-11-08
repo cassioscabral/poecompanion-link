@@ -14,16 +14,26 @@ describe("real EE2 lines", () => {
     expect(parseLine(real[0])).toMatchObject({ type: "game_start", ts: "2026/04/26 09:28:48" });
   });
   it("zone_entered via Set Source; (null)/(unknown) ignored", () => {
-    expect(parseLine(real[1])).toMatchObject({ type: "zone_entered", zoneName: "Clearfell Encampment" });
+    expect(parseLine(real[1])).toMatchObject({
+      type: "zone_entered",
+      zoneName: "Clearfell Encampment",
+    });
     expect(parseLine(real[2])).toBeNull();
     expect(parseLine(real[3])).toBeNull();
   });
   it("zone_entered via area generation", () => {
-    expect(parseLine(real[4])).toMatchObject({ type: "zone_entered", zoneId: "G2_1", areaLevel: 16 });
+    expect(parseLine(real[4])).toMatchObject({
+      type: "zone_entered",
+      zoneId: "G2_1",
+      areaLevel: 16,
+    });
   });
   it("level_up", () => {
     expect(parseLine(real[5])).toMatchObject({
-      type: "level_up", character: "Kvan_seven_abyss", className: "Mercenary", level: 16,
+      type: "level_up",
+      character: "Kvan_seven_abyss",
+      className: "Mercenary",
+      level: 16,
     });
   });
   it("death", () => {
@@ -45,24 +55,38 @@ describe("real EE2 lines", () => {
 describe("synthetic whispers", () => {
   it("full trade request", () => {
     expect(parseLine(syn[0])).toMatchObject({
-      type: "whisper_in", from: "BuyerOne",
+      type: "whisper_in",
+      from: "BuyerOne",
       trade: {
-        item: "Sapphire Ring", price: { amount: 5, currency: "Exalted Orb" }, league: "Standard",
-        stashTab: "Trade", position: { left: 3, top: 7 },
+        item: "Sapphire Ring",
+        price: { amount: 5, currency: "Exalted Orb" },
+        league: "Standard",
+        stashTab: "Trade",
+        position: { left: 3, top: 7 },
       },
     });
   });
   it("guild tag stripped, decimals and league with spaces", () => {
     const e = parseLine(syn[1]);
     expect(e).toMatchObject({
-      type: "whisper_in", from: "BuyerTwo",
-      trade: { price: { amount: 0.5, currency: "Divine Orb" }, league: "Dawn of the Hunt", stashTab: "~price 1 div" },
+      type: "whisper_in",
+      from: "BuyerTwo",
+      trade: {
+        price: { amount: 0.5, currency: "Divine Orb" },
+        league: "Dawn of the Hunt",
+        stashTab: "~price 1 div",
+      },
     });
   });
   it("bulk currency (outgoing)", () => {
     expect(parseLine(syn[2])).toMatchObject({
-      type: "whisper_out", to: "SellerOne",
-      trade: { item: "3 Divine Orb", price: { amount: 450, currency: "Exalted Orb" }, league: "Standard" },
+      type: "whisper_out",
+      to: "SellerOne",
+      trade: {
+        item: "3 Divine Orb",
+        price: { amount: 450, currency: "Exalted Orb" },
+        league: "Standard",
+      },
     });
   });
   it("plain whisper has no trade", () => {
@@ -71,7 +95,11 @@ describe("synthetic whispers", () => {
     expect(e).not.toHaveProperty("trade");
   });
   it("afk on/off", () => {
-    expect(parseLine(syn[4])).toMatchObject({ type: "afk", on: true, autoReply: "Busy, back soon: thanks" });
+    expect(parseLine(syn[4])).toMatchObject({
+      type: "afk",
+      on: true,
+      autoReply: "Busy, back soon: thanks",
+    });
     const off = parseLine(syn[5]);
     expect(off).toMatchObject({ type: "afk", on: false });
     expect(off).not.toHaveProperty("autoReply");

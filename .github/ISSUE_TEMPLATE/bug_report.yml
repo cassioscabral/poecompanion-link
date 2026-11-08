@@ -1,0 +1,31 @@
+name: Bug report
+description: Something in the app does not work
+labels: [bug]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened, and what did you expect?
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: App version and OS
+      placeholder: "0.1.0, Windows 11"
+    validations:
+      required: true
+  - type: textarea
+    id: sample
+    attributes:
+      label: Redacted sample
+      description: >
+        Attach a REDACTED sample using the app's Export button. Never attach your raw
+        Client.txt: it contains character, account, and chat names.
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Checks
+      options:
+        - label: I did not attach a raw Client.txt or any unredacted log
+          required: true

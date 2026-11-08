@@ -16,7 +16,8 @@ let readLog = false;
 function renderStatus(s: LogStatus) {
   const where = s.path ?? "not detected";
   const found = s.path ? (s.found ? "found" : "not found") : "";
-  $("logStatus").textContent = `Log: ${where}${found ? ` (${found})` : ""} — watching: ${s.watching ? "on" : "off"}`;
+  $("logStatus").textContent =
+    `Log: ${where}${found ? ` (${found})` : ""} — watching: ${s.watching ? "on" : "off"}`;
   const err = $("error");
   err.hidden = !s.error;
   err.textContent = s.error ?? "";
@@ -36,7 +37,10 @@ function renderEmpty(s?: LogStatus) {
 function row(e: LogEvent): HTMLLIElement {
   const li = document.createElement("li");
   const ts = Object.assign(document.createElement("span"), { className: "ts", textContent: e.ts });
-  const badge = Object.assign(document.createElement("span"), { className: `badge ${e.type}`, textContent: BADGES[e.type] });
+  const badge = Object.assign(document.createElement("span"), {
+    className: `badge ${e.type}`,
+    textContent: BADGES[e.type],
+  });
   const text = Object.assign(document.createElement("span"), { textContent: describeEvent(e) });
   li.append(ts, badge, text);
   return li;
@@ -75,7 +79,10 @@ api.onEvent((e) => {
   renderEmpty();
 });
 api.onStatus(renderStatus);
-void api.getState().then(applyState).catch((err) => {
-  $("error").hidden = false;
-  $("error").textContent = `Could not load state: ${err}`;
-});
+void api
+  .getState()
+  .then(applyState)
+  .catch((err) => {
+    $("error").hidden = false;
+    $("error").textContent = `Could not load state: ${err}`;
+  });

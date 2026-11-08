@@ -2,7 +2,8 @@
 import type { LogEvent, TradeRequest } from "./types";
 
 /** "<ts> <ms> <hex> [LEVEL Client pid] <text>" */
-export const LINE_RE = /^(\d{4}\/\d{2}\/\d{2} \d{2}:\d{2}:\d{2}) (\d+) ([a-f0-9]+) \[\S+ \S+ \S+\] (.*)$/;
+export const LINE_RE =
+  /^(\d{4}\/\d{2}\/\d{2} \d{2}:\d{2}:\d{2}) (\d+) ([a-f0-9]+) \[\S+ \S+ \S+\] (.*)$/;
 
 const LEVEL_UP_RE = /^: (\S+) \(([^)]+)\) is now level (\d+)$/;
 const SLAIN_RE = /^: (\S+) has been slain\.$/;
@@ -15,7 +16,8 @@ export const WHISPER_RE = /^@(From|To) (?:(<[^>]*>) )?([^\s:]+): (.*)$/;
 
 const TRADE_RE =
   /^Hi, I would like to buy your (.+?)(?: listed for ([\d.]+) (.+?))? in (.+?)(?: \(stash tab "(.*?)"; position: left (\d+), top (\d+)\))?\.?$/;
-const BULK_RE = /^Hi, I(?:'d| would) like to buy your (\d+(?:\.\d+)?) (.+?) for my (\d+(?:\.\d+)?) (.+?) in (.+?)\.?$/;
+const BULK_RE =
+  /^Hi, I(?:'d| would) like to buy your (\d+(?:\.\d+)?) (.+?) for my (\d+(?:\.\d+)?) (.+?) in (.+?)\.?$/;
 
 export function parseTrade(message: string): TradeRequest | undefined {
   let m = message.match(BULK_RE);

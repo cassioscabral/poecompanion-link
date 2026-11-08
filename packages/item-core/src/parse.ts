@@ -1,13 +1,7 @@
 // Adapted from Exiled Exchange 2 (MIT) — see NOTICE
 // Compact PoE2 clipboard item parser. English only. Never throws on bad input.
 import { stripBracketLinks } from "./normalize";
-import type {
-  ModifierKind,
-  ParsedItem,
-  ParsedModifier,
-  Rarity,
-  Requirements,
-} from "./types";
+import type { ModifierKind, ParsedItem, ParsedModifier, Rarity, Requirements } from "./types";
 
 const SEPARATOR = /^-{8,}$/;
 const KNOWN_RARITIES: Rarity[] = [
@@ -22,7 +16,7 @@ const KNOWN_RARITIES: Rarity[] = [
 ];
 
 function toLines(text: string): string[] {
-  return text.replace(/^﻿/, "").split(/\r\n|\r|\n/);
+  return text.replace(/^\uFEFF/, "").split(/\r\n|\r|\n/);
 }
 
 /** Quick check that clipboard text looks like a PoE2 item (English client). */
@@ -89,7 +83,11 @@ function parseHeader(line: string): AdvancedHeader {
   const head = inner.split(" — ")[0];
   const name = /"([^"]*)"/.exec(head)?.[1];
   const tierM = /\(Tier:\s*(\d+)\)/.exec(head);
-  const type = head.replace(/"[^"]*"/, "").replace(/\(.*?\)/g, "").trim().toLowerCase();
+  const type = head
+    .replace(/"[^"]*"/, "")
+    .replace(/\(.*?\)/g, "")
+    .trim()
+    .toLowerCase();
   let kind: ModifierKind = "unknown";
   if (type.includes("implicit")) kind = "implicit";
   else if (type.includes("corruption")) kind = "implicit";
@@ -128,7 +126,11 @@ function buildMod(raw: string, base: ModifierKind, header?: AdvancedHeader): Par
 
 function parseRequirements(value: string, into: Requirements) {
   for (const part of value.split(",")) {
-    const p = part.trim().replace(/\((?:augmented|unmet)\)/g, "").replace(/\s+/g, " ").trim();
+    const p = part
+      .trim()
+      .replace(/\((?:augmented|unmet)\)/g, "")
+      .replace(/\s+/g, " ")
+      .trim();
     let m = /^Level (\d+)$/.exec(p);
     if (m) {
       into.level = Number(m[1]);
@@ -142,8 +144,9 @@ function parseRequirements(value: string, into: Requirements) {
   }
 }
 
-const STATE_LINES = /^(Corrupted|Twice Corrupted|Mirrored|Fractured Item|Sanctified|Unidentified(?:\s*\(Tier\s*(\d+)\))?)$/;
-const PROPERTY_LINE = /^([A-Za-z][A-Za-z '\-]{0,38}): (.+)$/;
+const STATE_LINES =
+  /^(Corrupted|Twice Corrupted|Mirrored|Fractured Item|Sanctified|Unidentified(?:\s*\(Tier\s*(\d+)\))?)$/;
+const PROPERTY_LINE = /^([A-Za-z][A-Za-z '-]{0,38}): (.+)$/;
 
 export function parseItemText(text: string): ParsedItem | null {
   if (!isPoeItemText(text)) return null;
@@ -223,7 +226,9 @@ function parse(text: string): ParsedItem | null {
     const modRarity = rarity === "Magic" || rarity === "Rare" || rarity === "Unique";
     const hasMarker = section.some((l) => MARKER_RE.test(l));
     const flavourSection =
-      rarity === "Unique" && !hasMarker && isLast(section, sections) &&
+      rarity === "Unique" &&
+      !hasMarker &&
+      isLast(section, sections) &&
       section.every((l) => !/\d/.test(l) && !PROPERTY_LINE.test(l) && !STATE_LINES.test(l));
     if (flavourSection) {
       item.flavourText = section;
@@ -263,7 +268,10 @@ function parse(text: string): ParsedItem | null {
         else if (key === "Level") item.gemLevel = num(value);
         else if (key === "Map Tier" || key === "Waystone Tier") item.mapTier = num(value);
         else if (key === "Stack Size") {
-          const [current, max] = value.replace(/[^\d/]/g, "").split("/").map(Number);
+          const [current, max] = value
+            .replace(/[^\d/]/g, "")
+            .split("/")
+            .map(Number);
           if (Number.isFinite(current) && Number.isFinite(max)) item.stackSize = { current, max };
         } else if (key === "Requires") parseRequirements(value, requirements);
         else if (key === "Sockets") item.sockets = value.split(/\s+/).filter(Boolean);

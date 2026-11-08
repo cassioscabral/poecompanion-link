@@ -2,29 +2,47 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:"
+    />
     <title>PoE Companion Link</title>
     <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
-    <header><h1>PoE Companion Link</h1><span id="version"></span></header>
+    <header>
+      <h1>PoE Companion Link</h1>
+      <span id="version"></span>
+    </header>
     <section id="settings">
-      <label class="toggle"><input type="checkbox" id="readLog" /> Read the game log (Client.txt)</label>
-      <p class="hint">Off by default. When on, this app reads Client.txt on this PC only. Nothing is sent anywhere.</p>
+      <label class="toggle"
+        ><input type="checkbox" id="readLog" /> Read the game log (Client.txt)</label
+      >
+      <p class="hint">
+        Off by default. When on, this app reads Client.txt on this PC only. Nothing is sent
+        anywhere.
+      </p>
       <div class="row">
         <span id="logStatus"></span>
         <button id="browse">Browse…</button>
         <button id="auto">Auto-detect</button>
       </div>
       <div id="error" class="error" hidden></div>
-      <div class="row"><button id="export">Export redacted sample…</button><label class="hint"><input type="checkbox" id="onlyChat" /> Only chat &amp; unknown lines</label><span id="exportMsg" class="hint"></span></div>
+      <div class="row">
+        <button id="export">Export redacted sample…</button
+        ><label class="hint"
+          ><input type="checkbox" id="onlyChat" /> Only chat &amp; unknown lines</label
+        ><span id="exportMsg" class="hint"></span>
+      </div>
     </section>
     <section id="feed-wrap">
       <h2>Recent events</h2>
       <ul id="feed"></ul>
       <p id="empty" class="hint"></p>
     </section>
-    <footer>This product isn't affiliated with or endorsed by Grinding Gear Games in any way.</footer>
+    <footer>
+      This product isn't affiliated with or endorsed by Grinding Gear Games in any way.
+    </footer>
     <script type="module" src="./main.ts"></script>
   </body>
 </html>

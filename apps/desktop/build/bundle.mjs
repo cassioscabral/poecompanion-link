@@ -9,7 +9,14 @@ import path from "node:path";
 const root = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 process.chdir(root);
 
-const common = { bundle: true, platform: "node", target: "node22", format: "cjs", sourcemap: true, logLevel: "info" };
+const common = {
+  bundle: true,
+  platform: "node",
+  target: "node22",
+  format: "cjs",
+  sourcemap: true,
+  logLevel: "info",
+};
 
 await build({
   ...common,

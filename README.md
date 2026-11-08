@@ -18,11 +18,11 @@ Read [docs/WHAT-WE-READ.md](docs/WHAT-WE-READ.md). The short version:
 
 ## Repository layout
 
-| Path | What |
-|---|---|
-| `packages/log-core` | Parses `Client.txt` lines into events (zone, level up, death, AFK, whispers, trade requests) and tails the file |
-| `packages/item-core` | Parses the item text the game puts on the clipboard |
-| `apps/desktop` | The Electron app players install |
+| Path                 | What                                                                                                            |
+| -------------------- | --------------------------------------------------------------------------------------------------------------- |
+| `packages/log-core`  | Parses `Client.txt` lines into events (zone, level up, death, AFK, whispers, trade requests) and tails the file |
+| `packages/item-core` | Parses the item text the game puts on the clipboard                                                             |
+| `apps/desktop`       | The Electron app players install                                                                                |
 
 ## Develop
 

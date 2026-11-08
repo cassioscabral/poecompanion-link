@@ -1,6 +1,11 @@
 import fs from "node:fs";
 import os from "node:os";
-import { createLogWatcher, defaultLogPaths, type LogEvent, type LogWatcher } from "@poecompanion/log-core";
+import {
+  createLogWatcher,
+  defaultLogPaths,
+  type LogEvent,
+  type LogWatcher,
+} from "@poecompanion/log-core";
 import { createRawTail } from "./raw-tail";
 import type { LogStatus, Settings } from "../shared/types";
 
@@ -32,7 +37,10 @@ export class LogService {
     if (settings.logPath) return { path: settings.logPath, error: null };
     try {
       const candidates = defaultLogPaths(process.platform, os.homedir());
-      return { path: candidates.find((p) => fs.existsSync(p)) ?? candidates[0] ?? null, error: null };
+      return {
+        path: candidates.find((p) => fs.existsSync(p)) ?? candidates[0] ?? null,
+        error: null,
+      };
     } catch (err) {
       return { path: null, error: `Could not detect the log location: ${msg(err)}` };
     }
