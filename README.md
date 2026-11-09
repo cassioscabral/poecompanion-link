@@ -4,7 +4,9 @@ A small, open-source desktop app that connects **Path of Exile 2** on your PC to
 [PoE Companion](https://www.poecompanion.com): trade alerts while you're AFK, a campaign
 tracker, and item lookups, without touching the game client.
 
-> **Status: early development.** Not released yet. Nothing here is ready for players.
+> **Status: early test build.** [v0.1.0](https://github.com/cassioscabral/poecompanion-link/releases/tag/v0.1.0)
+> reads the game log (opt-in) and notifies you of trade whispers. Builds are not code-signed
+> yet, so Windows SmartScreen will warn: "More info" → "Run anyway".
 
 ## What it reads, and what it never does
 
